@@ -1,0 +1,8 @@
+---
+- hosts: minio
+  become: true
+  gather_facts: yes
+  name: install and configure minio stack
+  roles:
+  # install and configure minio reverse proxyu
+    - { role: minio, become: True, tags: minio_setup }

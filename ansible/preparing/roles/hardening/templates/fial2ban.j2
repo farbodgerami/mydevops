@@ -1,0 +1,13 @@
+ [DEFAULT]
+bantime=1h
+banaction=ufw
+[sshd]
+enabled = true
+logpath = /var/log/auth.log
+port    = {{ sshd_config.Port  }}
+
+[dropbear]
+port    = {{ sshd_config.Port  }}
+
+[selinux-ssh]
+port    = {{ sshd_config.Port  }}

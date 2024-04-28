@@ -1,0 +1,22 @@
+---
+- name: Restart ssh
+  systemd:
+    name: sshd
+    state: restarted
+ 
+
+- name: Restart fail2ban
+  systemd:
+    name: fail2ban
+    state: restarted
+
+    
+- name: Restart ntp
+  systemd:
+    name: ntpd
+    state: restarted
+
+- name: reload systemd
+  systemd:
+    daemon_reload: 'yes'
+ 

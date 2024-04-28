@@ -1,0 +1,8 @@
+---
+- hosts: elk
+  become: true
+  gather_facts: yes
+  name: install and configure pr-monlog
+  roles:
+  # install and configure elk reverse proxyu
+    - { role: pr-monlog, become: True, tags: pr-monlog }

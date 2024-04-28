@@ -1,0 +1,12 @@
+---
+# download images
+- name: docker images pull
+  docker_image:
+    name: "{{ item }}"
+    source: pull
+  with_items:
+    - "{{ REDIS_IMAGE }}:{{ REDIS_IMAGE_TAG }}"
+    - "{{ HA_PROXY_IMAGE }}:{{ HA_PROXY_IMAGE_TAG }}"
+    - "{{ REDIS_INSIGHT }}:{{ REDIS_INSIGHT_TAG }}"
+
+

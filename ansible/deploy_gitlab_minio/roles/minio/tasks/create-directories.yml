@@ -1,0 +1,10 @@
+---
+- name: Creates directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  tags: create_directories
+  loop:
+    - "{{ MINIO_DIRE_NAME }}/"
+   
+    

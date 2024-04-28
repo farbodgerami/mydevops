@@ -1,0 +1,17 @@
+---
+# download images
+- name: docker images pull
+  docker_image:
+    name: "{{ item }}"
+    source: pull
+  with_items:
+    - "{{ LOGSTASH_IMAGE }}:{{ ELK_VERSION }}"
+    - "{{ KIBANA_IMAGE }}:{{ ELK_VERSION }}"
+    - "{{ ELASTIC_AGENT_IMAGE }}:{{ ELK_VERSION }}"
+    - "{{ ELASTIC_FILE_BEAT_IMAGE }}:{{ ELK_VERSION }}"
+    - "{{ ELASTIC_AUDIT_BEAT_IMAGE }}:{{ ELK_VERSION }}"
+    - "{{ ELASTIC_METRIC_BEAT_IMAGE }}:{{ ELK_VERSION }}"
+    - "{{ ELASTIC_PACKET_BEAT_IMAGE }}:{{ ELK_VERSION }}"
+    - "{{ ELASTIC_HEART_BEAT_IMAGE }}:{{ ELK_VERSION }}"
+    - "{{ ELASTIC_AMP_SERVER_IMAGE }}:{{ ELK_VERSION }}"
+    

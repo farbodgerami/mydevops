@@ -1,0 +1,8 @@
+---
+- hosts: gitlab
+  become: true
+  gather_facts: yes
+  name: install and configure gitlab stack
+  roles:
+  # install and configure gitlab reverse proxyu
+    - { role: gitlab, become: True, tags: gitlab_setup }

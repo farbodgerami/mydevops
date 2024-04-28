@@ -1,0 +1,16 @@
+---
+- name: resolved.conf
+  become: 'yes'
+  ansible.builtin.template:
+    src: resolved.conf.j2
+    dest: /etc/systemd/resolved.conf
+    backup: 'yes'
+    mode: 0644
+    owner: root
+    group: root
+    
+- name: restart_resolved
+  systemd:
+    name: systemd-resolved
+    state: restarted
+

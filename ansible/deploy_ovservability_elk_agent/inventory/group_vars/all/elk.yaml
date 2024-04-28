@@ -1,0 +1,5 @@
+---
+# project directory
+ELK_VERSION: 7.17.13
+ELASTIC_AGENT_IMAGE: elastic/elastic-agent
+ELK_AGENT_DIRE_NAME: /var/services/elk-agent

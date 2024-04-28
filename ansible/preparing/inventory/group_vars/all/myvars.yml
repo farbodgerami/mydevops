@@ -1,0 +1,131 @@
+packages:
+  - ufw 
+  - resolvconf 
+  - needrestart     
+  - apt-listchanges 
+  - sysstat
+  - wget
+  - git
+  - vim
+  - nano
+  - bash-completion
+  - curl
+  - htop
+  - iftop
+  - jq
+  - ncdu
+  - unzip
+  - net-tools
+  - dnsutils
+  - atop
+  - sudo
+  - apache2-utils
+  - tcpdump
+  - telnet
+  - axel
+  - iptables-persistent
+  - auditd
+  - libpwquality-common
+  - cracklib-runtime
+  - lynis 
+  - libpam-tmpdir   
+  - debsums 
+  - chkrootkit 
+  - apt-show-versions 
+  - fail2ban
+  - software-properties-common
+  - ntp
+  - rkhunter
+  - tiger
+  - acct
+  - network-manager
+  - systemd-resolved
+
+grubpassword: 1234
+
+# in debian:
+# - apt-listbugs
+ufwRules:
+- http
+- https
+- 8431
+
+dns: 178.22.122.100 185.51.200.2
+fallback_dns: 178.22.122.100 185.51.200.2
+dnssec: allow-downgrade
+dns_over_tls: opportunistic
+
+
+sshd_config:
+  Port: "{{ ansible_port }}"
+
+sysctl_config:
+ - net.ipv4.icmp_echo_ignore_broadcasts: 1
+ - dev.tty.ldisc_autoload: 0
+ - fs.protected_fifos: 2
+ - fs.suid_dumpable: 0
+ - kernel.kptr_restrict: 2
+ - kernel.perf_event_paranoid: 3
+ - kernel.sysrq : 0
+ - kernel.unprivileged_bpf_disabled: 1 
+ - net.core.bpf_jit_harden: 2
+ - net.ipv4.conf.all.log_martians: 1
+ - net.ipv4.conf.all.rp_filter : 1
+ - net.ipv4.conf.all.send_redirects: 0
+ - kernel.randomize_va_space: 2  
+ - net.ipv4.conf.default.log_martians: 1 
+ - kernel.core_uses_pid: 1
+ - net.ipv4.conf.default.accept_source_route: 0
+
+ - net.ipv4.tcp_fin_timeout : 30
+ - net.ipv4.tcp_tw_recycle: 1
+ - net.ipv4.tcp_tw_reuse: 1
+ - net.netfilter.nf_conntrack_tcp_timeout_established: 3600
+ - fs.file-max: 500000
+ - vm.max_map_count: 262144
+ - net.ipv4.ip_nonlocal_bind: 1
+ - net.bridge.bridge-nf-call-iptables: 1
+ - net.bridge.bridge-nf-call-ip6tables: 1
+ - net.ipv4.ip_forward : 1
+ - kernel.dmesg_restrict: 1
+ - kernel.yama.ptrace_scope: 1
+ 
+ - net.ipv4.conf.all.forwarding: 0
+ - net.ipv4.conf.default.accept_redirects: 0
+ 
+ - net.ipv6.conf.all.accept_redirects: 0
+ - net.ipv6.conf.all.disable_ipv6: 1
+ - net.ipv6.conf.default.disable_ipv6: 1
+ - net.ipv6.conf.lo.disable_ipv6: 1
+ - net.ipv4.conf.all.accept_redirects: 0
+ - net.ipv6.conf.default.accept_redirects: 0
+
+ 
+files: 
+ - "install cramfs /bin/true" : /etc/modprobe.d/cramfs.conf
+ - "install freevxfs /bin/true" : /etc/modprobe.d/freevxfs.conf
+ - "install jffs2 /bin/true" : /etc/modprobe.d/jffs2.conf
+ - "install hfs /bin/true" : /etc/modprobe.d/hfs.conf
+ - "install hfsplus /bin/true" : /etc/modprobe.d/hfsplus.conf
+ - "install squashfs /bin/true" : /etc/modprobe.d/squashfs.conf
+ - "install udf /bin/true" : /etc/modprobe.d/udf.conf
+ - "install dccp /bin/true" : /etc/modprobe.d/dccp.conf
+ - "install sctp /bin/true" : /etc/modprobe.d/sctp.conf
+ - "install rds /bin/true" : /etc/modprobe.d/rds.conf
+ - "install tipc /bin/true" : /etc/modprobe.d/tipc.conf
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 

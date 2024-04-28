@@ -1,0 +1,3 @@
+MINIO_IMAGE: quay.io/minio/minio
+MINIO_IMAGE_TAG: RELEASE.2023-08-16T20-17-30Z
+MINIO_DIRE_NAME: /var/services/minio

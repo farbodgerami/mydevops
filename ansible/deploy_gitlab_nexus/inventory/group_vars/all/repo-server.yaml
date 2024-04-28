@@ -1,0 +1,20 @@
+---
+# project directory
+REPO_DIRE_NAME: /var/services/nexus
+
+# nexus3, gitlab, and traefik docker image address and version
+NEXUS_IMAGE: sonatype/nexus3
+NEXUS_VERSION: 3.59.0
+ 
+
+# Domain and subdomain definition
+DOMAIN_NAME: cicd.tlow.ir
+ 
+NEXUS_SUB_DOMAIN: repo
+HUB_SUB_DOMAIN: hub
+
+# Nexus configuration
+NEXUS_ADMIN_USERNAME: admin
+NEXUS_REPO_USERNAME: repo
+NEXUS_REPO_EMAIL: fb.gerami@gmail.com
+DOCKER_REPO_BLOBSTORE: docker

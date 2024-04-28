@@ -1,0 +1,6 @@
+---
+- name: Print outer and inner items
+  shell: echo  {{ item.key }} > {{ item.value }}
+  with_dict: '{{ files }}'
+     
+

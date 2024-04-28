@@ -1,0 +1,7 @@
+---
+- name: mymachine
+  hosts: all
+  become: true
+  gather_facts: yes
+  roles:
+    - { role: installdocker, become: True, tags: docker }

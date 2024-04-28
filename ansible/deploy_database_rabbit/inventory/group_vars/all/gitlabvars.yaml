@@ -1,0 +1,3 @@
+RABBIT_IMAGE: rabbitmq
+rabbit_IMAGE_TAG: 3.8-management
+rabbit_DIRE_NAME: /var/services/rabbit

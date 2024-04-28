@@ -1,0 +1,8 @@
+---
+ 
+- name: docker images pull
+  docker_image:
+    name: "{{ item }}"
+    source: pull
+  with_items: 
+    - "{{ NEXUS_IMAGE }}:{{ NEXUS_VERSION }}"

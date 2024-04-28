@@ -1,0 +1,18 @@
+---
+- name: Creates directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  tags: create_directories
+  loop:
+    - "{{ ELK_DIRE_NAME }}/apm-server"
+    - "{{ ELK_DIRE_NAME }}/auditbeat"
+    - "{{ ELK_DIRE_NAME }}/elasticsearch"
+    - "{{ ELK_DIRE_NAME }}/filebeat-elasticsearch"
+    - "{{ ELK_DIRE_NAME }}/filebeat-logstash"
+    - "{{ ELK_DIRE_NAME }}/heartbeat"
+    - "{{ ELK_DIRE_NAME }}/kibana"
+    - "{{ ELK_DIRE_NAME }}/logstash"
+    - "{{ ELK_DIRE_NAME }}/logstash/pipeline"
+    - "{{ ELK_DIRE_NAME }}/metricbeat"
+    - "{{ ELK_DIRE_NAME }}/packetbeat"

@@ -1,0 +1,7 @@
+---
+- name: mymachine
+  hosts: all
+  become: true
+  gather_facts: yes
+  roles:
+    - { role: hardening, become: True, tags: monsterhardening }

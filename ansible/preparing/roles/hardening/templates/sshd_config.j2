@@ -1,0 +1,38 @@
+Include /etc/ssh/sshd_config.d/*.conf
+
+Port 8431
+X11Forwarding no
+ 
+IgnoreRhosts yes
+PermitEmptyPasswords no
+MaxAuthTries 3
+PubkeyAuthentication yes
+PasswordAuthentication no
+PermitRootLogin without-password
+
+AllowTcpForwarding no
+ClientAliveCountMax 2
+Compression no
+LogLevel VERBOSE
+MaxSessions 2
+TCPKeepAlive no
+AllowAgentForwarding no
+
+
+KbdInteractiveAuthentication no
+UsePAM yes
+PrintMotd no
+AcceptEnv LANG LC_*
+
+
+Subsystem	sftp	/usr/lib/openssh/sftp-server
+
+
+ListenAddress 0.0.0.0
+
+ChallengeResponseAuthentication no
+GSSAPIAuthentication no
+ClientAliveInterval 10
+UseDNS no
+
+Banner /etc/issue

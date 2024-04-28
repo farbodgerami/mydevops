@@ -1,0 +1,27 @@
+---
+# project directory
+ELK_VERSION: 7.17.13
+ 
+ELASTICSEARCH_IMAGE: elasticsearch
+ 
+LOGSTASH_IMAGE: logstash
+KIBANA_IMAGE: kibana
+ELASTIC_AGENT_IMAGE: elastic/elastic-agent
+ELASTIC_FILE_BEAT_IMAGE: elastic/filebeat
+ELASTIC_AUDIT_BEAT_IMAGE: elastic/auditbeat
+ELASTIC_METRIC_BEAT_IMAGE: elastic/metricbeat
+ELASTIC_PACKET_BEAT_IMAGE: elastic/packetbeat
+ELASTIC_HEART_BEAT_IMAGE: elastic/heartbeat
+ELASTIC_AMP_SERVER_IMAGE: elastic/apm-server
+
+ELK_DIRE_NAME: /var/services/elk
+
+# docker pull kibana:7.17.13
+# docker pull logstash:7.17.13
+# docker pull elastic/elastic-agent:7.17.13
+# docker pull elastic/filebeat:7.17.13
+# docker pull elastic/auditbeat:7.17.13
+# docker pull elastic/metricbeat:7.17.13
+# docker pull elastic/packetbeat:7.17.13
+# docker pull elastic/heartbeat:7.17.13
+# docker pull elastic/apm-server:7.17.13

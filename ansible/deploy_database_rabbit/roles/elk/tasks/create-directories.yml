@@ -1,0 +1,11 @@
+---
+- name: Creates directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  tags: create_directories
+  loop:
+    - "{{ rabbit_DIRE_NAME }}/"
+    - "{{ rabbit_DIRE_NAME }}/configfile/"
+   
+    

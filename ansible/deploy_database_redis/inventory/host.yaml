@@ -1,0 +1,10 @@
+all:
+  vars:
+  # ansible_port: 22
+  children:
+    webservers:
+      hosts:
+        redis:
+          ansible_host: 5.34.195.167
+          ansible_port: 8431
+          ansible_user: root

@@ -1,0 +1,10 @@
+---
+# download images
+- name: docker images pull
+  docker_image:
+    name: "{{ item }}"
+    source: pull
+  with_items:
+    - "{{ MINIO_IMAGE }}:{{ MINIO_IMAGE_TAG }}"
+
+

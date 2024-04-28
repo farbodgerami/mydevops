@@ -1,0 +1,10 @@
+---
+# project directory
+TRAEFIK_DIRE_NAME: /var/services/traefik
+
+ 
+TRAEFIK_IMAGE: traefik
+TRAEFIK_VERSION: v2.6.1
+
+ 
+ 

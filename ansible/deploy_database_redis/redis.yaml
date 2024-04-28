@@ -1,0 +1,8 @@
+---
+- hosts: redis
+  become: true
+  gather_facts: yes
+  name: install and configure redis stack
+  roles:
+  # install and configure redis reverse proxyu
+    - { role: redis, become: True, tags: redis_setup }

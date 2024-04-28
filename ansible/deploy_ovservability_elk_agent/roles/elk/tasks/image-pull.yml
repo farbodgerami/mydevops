@@ -1,0 +1,10 @@
+---
+# download images
+- name: docker images pull
+  docker_image:
+    name: "{{ item }}"
+    source: pull
+  with_items:
+    - "{{ ELASTIC_AGENT_IMAGE }}:{{ ELK_VERSION }}"
+ 
+    

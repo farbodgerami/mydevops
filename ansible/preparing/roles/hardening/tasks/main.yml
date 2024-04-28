@@ -1,0 +1,34 @@
+---
+- name: Update and upgrade apt packages
+  import_tasks: installneededs.yml
+  tags: updateandupgrade
+   
+- name: Set firewall Rules
+  import_tasks: security.yml
+  tags: security
+
+- name: systemctlHardening
+  import_tasks: systemctlHardening.yml
+  tags: systemctlHardening
+
+- name: change resolved.conf
+  import_tasks: resolvedconf.yml
+  tags: dnsHardening 
+
+- name: limit
+  import_tasks: limit.yml
+  tags: cordump 
+
+- name: ssh hardening
+  import_tasks: ssh.yml
+  tags: sshhardening 
+
+- name: Disable unused filesystems and network protocols
+  tags: filesystem
+  import_tasks: fielsystems.yml
+
+- name: reload systemd
+  systemd:
+    daemon_reload: 'yes'
+
+

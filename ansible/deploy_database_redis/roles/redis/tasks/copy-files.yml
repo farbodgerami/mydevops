@@ -1,0 +1,21 @@
+
+---
+- name: copy compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ REDIS_DIRE_NAME}}/docker-compose.yml"
+
+- name: copy haproxy file
+  template:
+    src: haproxy.cfg.j2
+    dest: "{{ REDIS_DIRE_NAME}}/haproxy.cfg"
+
+- name: copy readme file
+  template:
+    src: README.md.j2
+    dest: "{{ REDIS_DIRE_NAME}}/README.md"
+
+- name: copy env file
+  template:
+    src: redis.sh.j2
+    dest: "{{ REDIS_DIRE_NAME}}/redis.sh"

@@ -1,0 +1,55 @@
+---    
+- name: Update and upgrade apt packages
+  tags: upateupgrade
+  apt:
+    update_cache: yes
+    upgrade: yes
+    autoremove: yes
+    autoclean: yes
+    # 
+    cache_valid_time: 86400
+  # ignore_errors: yes
+
+- name: purge snapd
+  tags: snapd
+  apt:
+    name: snapd
+    state: absent
+    autoremove: yes
+    purge: true
+
+- name: Install all packages service
+  tags: installapps
+  apt:
+    name: "{{ packages }}"
+    state: present
+    force_apt_get: yes
+  # ignore_errors: yes
+ 
+
+- name: Set hostname
+  hostname:
+    name: '{{ inventory_hostname }}'
+
+- name: Fix /etc/hosts
+  template:
+    src: "hosts.j2"
+    dest: "/etc/hosts"
+
+# - name: tiger
+#   tags: tiger
+#   command: tiger -e
+    
+- name: Create a directory if it does not exist
+  tags: createfolder
+  ansible.builtin.file:
+    path: /var/log/wtmp
+    state: file
+    mode: '0755'
+
+
+- name: enable
+  tags: acct
+  systemd:
+    name: acct
+    state: started

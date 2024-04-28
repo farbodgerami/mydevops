@@ -1,0 +1,9 @@
+- name: limits.conf
+  become: 'yes'
+  ansible.builtin.template:
+    src: limits.conf.j2
+    dest: /etc/security/limits.conf
+    backup: 'yes'
+    mode: 0644
+    owner: root
+    group: root

@@ -1,0 +1,10 @@
+---
+- name: Creates directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  tags: create_directories
+  loop:
+    - "{{ PROMETHEUS_DIRE_NAME }}/"
+    - "{{ PROMETHEUS_DIRE_NAME }}/blackbox"
+ 

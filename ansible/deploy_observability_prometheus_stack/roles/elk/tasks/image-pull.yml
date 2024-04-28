@@ -1,0 +1,15 @@
+---
+# download images
+- name: docker images pull
+  docker_image:
+    name: "{{ item }}"
+    source: pull
+  with_items:
+    - "{{ NODE_EXPORTER_IMAGE }}:{{ NODE_EXPORTER_IMAGE_VERSION }}"
+    - "{{ BOX_EXPORTER_IMAGE }}:{{ BOX_EXPORTER_IMAGE_VERSION }}"
+    - "{{ CADVISOR_IMAGE }}:{{ CADVISOR_IMAGE_VERSTION }}"
+    - "{{ PUSHGATEWAY_IMAGE }}:{{ PUSHGATEWAY_IMAGE_VERSION }}"
+    - "{{ ALERTMANAGER_IMAGE }}:{{ ALERTMANAGER_IMAGE_VERSION }}"
+    - "{{ GRAFANA_IMAGE }}:{{ GRAFANA_IMAGE_IMAGE }}"
+    - "{{ PROMETHEUS_IMGAE }}:{{ PROMETHEUS_IMAGE_VERSION }}"
+

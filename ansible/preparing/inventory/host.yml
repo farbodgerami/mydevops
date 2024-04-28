@@ -1,0 +1,9 @@
+all:
+  vars:
+  children:
+    webservers:
+      hosts:
+        web1:
+          ansible_host: 5.34.195.167
+          ansible_port: 8431
+          ansible_user: root

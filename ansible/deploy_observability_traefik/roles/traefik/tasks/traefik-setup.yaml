@@ -1,0 +1,27 @@
+---
+- name: Creates directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ TRAEFIK_DIRE_NAME }}"
+
+
+
+- name: copy Docker Compose files
+  template:
+    src: docker-compose.yaml.j2
+    dest: "{{ TRAEFIK_DIRE_NAME }}/docker-compose.yaml"
+ 
+
+- name: Run `docker-compose up`
+  tags: composeup
+  docker_compose:
+    project_src: "{{ TRAEFIK_DIRE_NAME }}"
+    build: no
+    files:
+      - docker-compose.yaml
+  register: output
+
+- debug:
+    var: output

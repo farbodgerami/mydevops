@@ -1,0 +1,9 @@
+---
+# download images
+- name: docker images pull
+  docker_image:
+    name: "{{ item }}"
+    source: pull
+  with_items:
+    - "{{ NODE_EXPORTER_IMAGE }}:{{ NODE_EXPORTER_IMAGE_VERSION }}"
+    - "{{ CADVISOR_IMAGE }}:{{ CADVISOR_IMAGE_VERSTION }}"

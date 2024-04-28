@@ -1,0 +1,8 @@
+---
+- hosts: traefik
+  become: true
+  gather_facts: yes
+  name: install and configure traefik reverse proxyu
+  roles:
+  # install and configure traefik reverse proxyu
+    - { role: traefik, become: True, tags: traefik_setup }

@@ -1,0 +1,10 @@
+---
+# download images
+- name: docker images pull
+  docker_image:
+    name: "{{ item }}"
+    source: pull
+  with_items:
+    - "{{ RABBIT_IMAGE_NAME }}:{{ RABBIT_IMAGE_TAG }}"
+
+

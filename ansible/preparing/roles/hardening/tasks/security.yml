@@ -1,0 +1,55 @@
+- name: Stop and Disable postfix service if started
+  ansible.builtin.service:
+    name: postfix
+    state: stopped
+    enabled: no
+  ignore_errors: true
+
+- name: Stop and Disable firewalld service if started
+  ansible.builtin.service:
+    name: firewalld
+    state: stopped
+    enabled: no
+  ignore_errors: true
+
+- name: Make timout configuration file.
+  template:
+    src: timout.j2
+    dest: /etc/profile.d/timout-settings.sh
+
+
+- name: Set ufw rules
+  tags: ufw
+  ufw:
+    rule: allow
+    port: '{{ item }}'
+  loop: "{{ ufwRules  }}"
+
+- name: enable UFW
+  ufw:
+    state: enabled
+
+
+- name: Set timezone to Asia/Tehran
+  tags: timezone
+  timezone:
+    name: Asia/Tehran
+  notify: Restart ntp
+
+- name: Copy ssh banner file.
+  copy:
+    src: ssh_banner
+    dest: /etc/issue
+    
+# should be modified:
+- name: Make fail2ban configuration file.
+  tags: fail2ban
+  template:
+    src: fial2ban.j2
+    dest: /etc/fail2ban/jail.local
+
+# - name: Print outer and inner items
+#   tags: grubpassword
+#   shell: echo " password_pbkdf2 ubuntu "{{ grubpassword  }}" " >> /etc/grub.d/40_custom && update-grub
+
+ 

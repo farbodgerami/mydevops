@@ -1,0 +1,12 @@
+
+---
+
+
+- name: copy env Compose files
+  template:
+    src: env.j2
+    dest: "{{ ELK_DIRE_NAME }}/.env"
+- name: copy Docker Compose files
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ ELK_DIRE_NAME }}/compose.yml"

@@ -1,0 +1,10 @@
+all:
+  vars:
+  # ansible_port: 22
+  children:
+    webservers:
+      hosts:
+        elk:
+          ansible_host: 37.152.191.57
+          ansible_port: 8431
+          ansible_user: root

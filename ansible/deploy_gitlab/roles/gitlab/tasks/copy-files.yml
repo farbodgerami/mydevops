@@ -1,0 +1,12 @@
+
+---
+- name: copy compose file
+  template:
+    src: compose.yml.j2
+    dest: "{{ GITLAB_DIRE_NAME}}/compose.yml"
+
+- name: copy env file
+  template:
+    src: env.j2
+    dest: "{{ GITLAB_DIRE_NAME}}/.env"
+ 

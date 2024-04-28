@@ -1,0 +1,8 @@
+---
+- hosts: elk-agent
+  become: true
+  gather_facts: yes
+  name: install and configure elk-agent stack
+  roles:
+  # install and configure elk-agent reverse proxyu
+    - { role: elk-agent, become: True, tags: elk-agent_setup }

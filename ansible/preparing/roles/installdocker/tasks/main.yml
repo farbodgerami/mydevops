@@ -1,0 +1,64 @@
+---
+- name: Install aptitude
+  apt:
+    name: aptitude
+    state: latest
+    update_cache: true
+
+- name: Install required system packages
+  apt:
+      name: "{{ item }}"
+      state: present
+      # update_cache: yes
+      # autoclean: yes
+      # autoremove: yes
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+    - gnupg-agent
+ 
+ 
+
+- name: Add Docker GPG apt Key
+  apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: install docker
+  apt:
+    name: "{{item}}"
+    state: latest
+    # update_cache: yes
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-compose-plugin
+    - docker-compose
+    - docker-buildx-plugin 
+- name: config docker
+  template:
+    src: docker-service.j2
+    dest: /etc/docker/daemon.json
+  tags: configdocker
+  notify: restart docker
+ 
+- name: start and enable docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Create a network
+  docker_network:
+    name: web_net
+- name: Create a network
+  docker_network:
+    name: app_net

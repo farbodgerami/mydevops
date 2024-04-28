@@ -1,0 +1,94 @@
+
+---
+- name: copy compose file
+  template:
+    src: compose.yml.j2
+    dest: "{{ ELK_PROMETHEUS_DIRE_NAME}}/compose.yml"
+
+- name: copy env file
+  template:
+    src: env.j2
+    dest: "{{ ELK_PROMETHEUS_DIRE_NAME}}/.env"
+
+- name: copy Alertmanager file
+  template:
+    src: Alertmanager.yml.j2
+    dest: "{{ ELK_PROMETHEUS_DIRE_NAME}}/alertmanager/alertmanager.yml"
+
+
+- name: copy blackbox file
+  template:
+    src: blackbox-exporter.yml.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/blackbox/blackbox-exporter.yml"
+
+
+- name: copy grafana dashboards file
+  template:
+    src: BlackboxPingTest.json.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/grafana/dashboards/BlackboxPingTest.json"
+
+- name: copy grafana dashboards file
+  template:
+    src: dashboard.yml.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/grafana/dashboards/dashboard.yml"
+
+- name: copy grafana dashboards file
+  template:
+    src: DockerContainerMonitor.json.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/grafana/dashboards/DockerContainerMonitor.json"
+
+- name: copy grafana dashboards file
+  template:
+    src: GrafanaMetrics.json.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/grafana/dashboards/GrafanaMetrics.json"
+
+- name: copy grafana dashboards file
+  template:
+    src: NodeExporterFull.json.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/grafana/dashboards/NodeExporterFull.json"
+
+- name: copy grafana dashboards file
+  template:
+    src: Prometheus2.0Stats.json.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/grafana/dashboards/Prometheus2.0Stats.json"
+
+- name: copy grafana dashboards file
+  template:
+    src: Traefik2Dashboard.json.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/grafana/dashboards/Traefik2Dashboard.json"
+
+- name: copy data sources files
+  template:
+    src: datasource.yml.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/grafana/datasources/datasource.yml"
+
+
+- name: copy alerts files
+  template:
+    src: Alertmanager.yml.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/prometheus/alerts/Alertmanager.rules"
+- name: copy alerts files
+  template:
+    src: BlackBox.yml.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/prometheus/alerts/BlackBox.rules"
+- name: copy alerts files
+  template:
+    src: Cadvisor.yml.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/prometheus/alerts/Cadvisor.rules"
+- name: copy alerts files
+  template:
+    src: Node_Exporter.yml.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/prometheus/alerts/Node_Exporter.rules"
+- name: copy alerts files
+  template:
+    src: Prometheus.yml.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/prometheus/alerts/Prometheus.rules"
+- name: copy alerts files
+  template:
+    src: Traefik.rules.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/prometheus/alerts/Traefik.rules"
+
+- name: copy pr 
+  template:
+    src: prometheus.yml.j2
+    dest: "{{ PROMETHEUS_DIRE_NAME }}/prometheus/prometheus.yml"

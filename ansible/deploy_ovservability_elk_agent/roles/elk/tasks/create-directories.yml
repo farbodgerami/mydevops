@@ -1,0 +1,9 @@
+---
+- name: Creates directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  tags: create_directories
+  loop:
+ 
+    - "{{ ELK_AGENT_DIRE_NAME }}/"

@@ -1,0 +1,71 @@
+
+---
+
+- name: copy apm-server Compose files
+  template:
+    src: apm-server.yml.j2
+    dest: "{{ ELK_DIRE_NAME }}/apm-server/apm-server.yml"
+
+- name: copy auditbeat Compose files
+  template:
+    src: auditbeat.yml.j2
+    dest: "{{ ELK_DIRE_NAME }}/auditbeat/auditbeat.yml"
+ 
+- name: copy elasticsearch Compose files
+  template:
+    src: elasticsearch.yml.j2
+    dest: "{{ ELK_DIRE_NAME }}/elasticsearch/elasticsearch.yml"
+ 
+- name: copy health check files
+  template:
+    src: health-check.sh.j2
+    dest: "{{ ELK_DIRE_NAME }}/elasticsearch/health-check.sh"
+ 
+- name: copy filebeatelastic Compose files
+  template:
+    src: filebeatelastic.yml.j2
+    dest: "{{ ELK_DIRE_NAME }}/filebeat-elasticsearch/filebeat.yml"
+ 
+- name: copy filebeatlogstash Compose files
+  template:
+    src: filebeatlogstash.yml.j2
+    dest: "{{ ELK_DIRE_NAME }}/filebeat-logstash/filebeat.yml"
+ 
+- name: copy heartbeat Compose files
+  template:
+    src: heartbeat.yml.j2
+    dest: "{{ ELK_DIRE_NAME }}/heartbeat/heartbeat.yml"
+ 
+- name: copy kibana Compose files
+  template:
+    src: kibana.yml.j2
+    dest: "{{ ELK_DIRE_NAME }}/kibana/kibana.yml"
+ 
+- name: copy pipeline Compose files
+  template:
+    src: pipeline.conf.j2
+    dest: "{{ ELK_DIRE_NAME }}/logstash/pipeline/pipeline.conf"
+
+- name: copy logstash Compose files
+  template:
+    src: logstash.yml.j2
+    dest: "{{ ELK_DIRE_NAME }}/logstash/logstash.yml"
+
+- name: copy metricbeat Compose files
+  template:
+    src: metricbeat.yml.j2
+    dest: "{{ ELK_DIRE_NAME }}/metricbeat/metricbeat.yml"
+
+- name: copy packetbeat Compose files
+  template:
+    src: packetbeat.yml.j2
+    dest: "{{ ELK_DIRE_NAME }}/packetbeat/packetbeat.yml"
+
+- name: copy env Compose files
+  template:
+    src: env.j2
+    dest: "{{ ELK_DIRE_NAME }}/.env"
+- name: copy Docker Compose files
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ ELK_DIRE_NAME }}/compose.yml"
