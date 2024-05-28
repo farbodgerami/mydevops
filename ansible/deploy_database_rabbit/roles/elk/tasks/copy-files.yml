@@ -4,11 +4,7 @@
   template:
     src: compose.yml.j2
     dest: "{{ rabbit_DIRE_NAME}}/compose.yml"
-
-- name: copy env file
-  template:
-    src: env.j2
-    dest: "{{ rabbit_DIRE_NAME}}/.env"
+ 
 
 - name: copy config file
   template:

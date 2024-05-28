@@ -1,0 +1,16 @@
+toml
+# InfluxDB to write metrics to
+[[outputs.influxdb]]
+  urls = ["http://:8086"]
+  database = ""
+  username = ""
+  password = ""
+# Pull metrics from Rclone
+[[inputs.prometheus]]
+  # Single Rclone rc instance
+  urls = ['http://:5572/metrics']
+  # Multiple Rclone rc instances
+  # urls = ['http://:5572/metrics','http://:5573/metrics']
+  # Rclone authentication
+  username = ""
+  password = ""

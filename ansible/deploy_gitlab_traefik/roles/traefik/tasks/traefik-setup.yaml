@@ -12,12 +12,7 @@
   template:
     src: docker-compose.yaml.j2
     dest: "{{ TRAEFIK_DIRE_NAME }}/docker-compose.yaml"
-
-- name: copy Docker env files
-  template:
-    src: env.j2
-    dest: "{{ TRAEFIK_DIRE_NAME }}/.env"
-
+ 
 - name: Create a network
   docker_network:
     name: web_net

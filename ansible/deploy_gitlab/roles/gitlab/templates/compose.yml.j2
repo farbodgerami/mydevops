@@ -20,17 +20,17 @@ volumes:
 
 services:
   gitlab:
-    image: gitlab/gitlab-ce:${GITLAB_IMAGE_TAG}
+    image: gitlab/gitlab-ce:{{ GITLAB_IMAGE_TAG }}
     restart: always
     container_name: gitlab
-    hostname: ${GIT_DOMAIN}
+    hostname: {{ GIT_DOMAIN }}
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         # Gitlab external url
-        external_url 'https://${GIT_DOMAIN}'
+        external_url 'https://{{ GIT_DOMAIN }}'
 
         # Change the initial default admin password
-        gitlab_rails['initial_root_password'] = "${GITLAB_ROOT_PASSWORD}"
+        gitlab_rails['initial_root_password'] = "{{ GITLAB_ROOT_PASSWORD }}"
         gitlab_rails['display_initial_root_password'] = "false"
         gitlab_rails['store_initial_root_password'] = "false"
 
@@ -50,7 +50,7 @@ services:
           "X-Forwarded-For" => "$$proxy_add_x_forwarded_for",
           "X-Forwarded-Proto" => "https",
           "X-Forwarded-Ssl" => "on"
-        }
+         }
 
         # # ZOHO SMTP configuration
         gitlab_rails['smtp_enable'] = true
@@ -60,9 +60,9 @@ services:
   
         # gitlab_rails['smtp_authentication'] = "plain"
         # gitlab_rails['smtp_enable_starttls_auto'] = true
-        gitlab_rails['smtp_user_name'] = '${SMTP_USER}'
-        gitlab_rails['smtp_password'] = '${SMTP_PASS}'
-        gitlab_rails['smtp_domain'] = '${SMTP_ADDRESS}'
+        gitlab_rails['smtp_user_name'] = '{{ SMTP_USER }}'
+        gitlab_rails['smtp_password'] = '{{ SMTP_PASS }}'
+        gitlab_rails['smtp_domain'] = '{{ SMTP_ADDRESS }}'
         gitlab_rails['gitlab_email_from'] = "fb.gerami@gmail.com"
 
 
@@ -78,7 +78,7 @@ services:
           'maxretry' => 10,
           'findtime' => 60,
           'bantime' => 3600
-        }
+         }
 
         # Disable unuse services
         prometheus['enable'] = false
@@ -97,21 +97,21 @@ services:
         gitlab_rails['backup_path'] = "/var/opt/gitlab/backups"
         gitlab_rails['backup_archive_permissions'] = 0644
         gitlab_rails['backup_keep_time'] = 604800
-        gitlab_rails['env'] = {"SKIP" => "registry"}
+        gitlab_rails['env'] = {"SKIP" => "registry" }
 
         # Configure Minio storage for the Backup Location
         gitlab_rails['backup_upload_connection'] = {
           'provider' => 'AWS',
           'region' => 'eu-west-1',
-          'aws_access_key_id' => '${MINIO_ACCESS_KEY}',
-          'aws_secret_access_key' => '${MINIO_SECRET_KEY}',
-          'endpoint' => '${MINIO_ENDPOINT_URL}',
+          'aws_access_key_id' => '{{ MINIO_ACCESS_KEY }}',
+          'aws_secret_access_key' => '{{ MINIO_SECRET_KEY }}',
+          'endpoint' => '{{ MINIO_ENDPOINT_URL }}',
           'path_style' => true
-        }
-        gitlab_rails['backup_upload_remote_directory'] = '${MINIO_BACKUP_BUCKET_NAME}'
+         }
+        gitlab_rails['backup_upload_remote_directory'] = '{{ MINIO_BACKUP_BUCKET_NAME }}'
 
         # Gitlab registry config
-        registry_external_url 'https://${RIGISTRY_SUB}.${DOMAIN_ADDRESS}'
+        registry_external_url 'https://{{ RIGISTRY_SUB }}.{{ DOMAIN_ADDRESS }}'
         registry_nginx['listen_port'] = 5100
         registry_nginx['listen_https'] = false
         registry_nginx['proxy_set_headers'] = {
@@ -120,27 +120,27 @@ services:
           "X-Forwarded-For" => "$$proxy_add_x_forwarded_for",
           "X-Forwarded-Proto" => "https",
           "X-Forwarded-Ssl" => "on"
-        }
+         }
 
         # Configure Minio storage for the Container Registry Backend
         registry['storage'] = {
             's3' => {
-              'accesskey' => '${MINIO_ACCESS_KEY}',
-              'secretkey' => '${MINIO_SECRET_KEY}',
-              'bucket' => '${MINIO_REGISTRY_BUCKET_NAME}',
+              'accesskey' => '{{ MINIO_ACCESS_KEY }}',
+              'secretkey' => '{{ MINIO_SECRET_KEY }}',
+              'bucket' => '{{ MINIO_REGISTRY_BUCKET_NAME }}',
               'region' => 'us-east-1',
-              'regionendpoint' => '${MINIO_ENDPOINT_URL}'
-            }
-          }
+              'regionendpoint' => '{{ MINIO_ENDPOINT_URL }}'
+             }
+           }
     labels:
       # gitlab web config
       - traefik.enable=true
       - traefik.docker.network=web_net
       - traefik.http.routers.gitlab.entrypoints=http
-      - traefik.http.routers.gitlab.rule=Host(`${GIT_DOMAIN}`)
+      - traefik.http.routers.gitlab.rule=Host(`{{ GIT_DOMAIN }}`)
       - traefik.http.routers.gitlab.middlewares=https-redirect
       - traefik.http.routers.gitlab-secure.entrypoints=https
-      - traefik.http.routers.gitlab-secure.rule=Host(`${GIT_DOMAIN}`)
+      - traefik.http.routers.gitlab-secure.rule=Host(`{{ GIT_DOMAIN }}`)
       - traefik.http.routers.gitlab-secure.tls=true
       - traefik.http.routers.gitlab-secure.tls.options=default
       - traefik.http.routers.gitlab.service=gitlab
@@ -149,12 +149,12 @@ services:
       - traefik.http.services.gitlab.loadbalancer.server.port=80
       # gitlab registry config
       - traefik.http.routers.gitlab-registry.entrypoints=http
-      - traefik.http.routers.gitlab-registry.rule=Host(`${RIGISTRY_SUB}.${DOMAIN_ADDRESS}`)
+      - traefik.http.routers.gitlab-registry.rule=Host(`{{ RIGISTRY_SUB }}.{{ DOMAIN_ADDRESS }}`)
       - traefik.http.routers.gitlab-registry.middlewares=https-redirect
       - traefik.http.routers.gitlab-registry.service=gitlab-registry
       - traefik.http.routers.gitlab-registry-secure.service=gitlab-registry
       - traefik.http.routers.gitlab-registry-secure.entrypoints=https
-      - traefik.http.routers.gitlab-registry-secure.rule=Host(`${RIGISTRY_SUB}.${DOMAIN_ADDRESS}`)
+      - traefik.http.routers.gitlab-registry-secure.rule=Host(`{{ RIGISTRY_SUB }}.{{ DOMAIN_ADDRESS }}`)
       - traefik.http.routers.gitlab-registry-secure.tls=true
       - traefik.http.routers.gitlab-registry-secure.tls.options=default
       - traefik.http.routers.gitlab-registry-secure.tls.certresolver=mycert

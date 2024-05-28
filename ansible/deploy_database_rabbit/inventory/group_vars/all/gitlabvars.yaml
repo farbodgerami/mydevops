@@ -1,3 +1,9 @@
 RABBIT_IMAGE: rabbitmq
 rabbit_IMAGE_TAG: 3.8-management
 rabbit_DIRE_NAME: /var/services/rabbit
+
+RABBITMQ_CONFIG_FILE: /config/rabbitmq
+RABBITMQ_ERLANG_COOKIE: wetgq4we45g5y4te
+RABBIT_CLUSTER_SUB:  rabbitmonitor
+RABBIT_E_CLUSTER_SUB: rabbit
+DOMAIN_NAME: cicd.tlow.ir

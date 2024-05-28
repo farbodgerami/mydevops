@@ -1,18 +1,18 @@
 ---
 - name: pull all image
-  include: image-pull.yml
+  import_tasks: image-pull.yml
   tags: imagepull
 
 - name: copy create directories 
-  include: create-directories.yml
+  import_tasks: create-directories.yml
   tags: createdirs
   
 - name: copy needed files
-  include: copy-files.yml
+  import_tasks: copy-files.yml
   tags: copyfiles
   
 - name: config and setup all service
-  include: gitlab-setup.yml
+  import_tasks: gitlab-setup.yml
   tags: composeup
 
 

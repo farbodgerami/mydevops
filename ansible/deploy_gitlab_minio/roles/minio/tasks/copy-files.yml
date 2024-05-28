@@ -5,8 +5,5 @@
     src: compose.yml.j2
     dest: "{{ MINIO_DIRE_NAME}}/compose.yml"
 
-- name: copy env file
-  template:
-    src: env.j2
-    dest: "{{ MINIO_DIRE_NAME}}/.env"
+ 
  

@@ -1,3 +1,17 @@
 MINIO_IMAGE: quay.io/minio/minio
 MINIO_IMAGE_TAG: RELEASE.2023-08-16T20-17-30Z
 MINIO_DIRE_NAME: /var/services/minio
+
+
+
+# Domain address
+DOMAIN_ADDRESS: cicd.tlow.ir
+MINIO_SUB1: object
+MINIO_SUB2: io
+
+# restart policy
+RESTART_POLICY: unless-stopped
+
+# Minio user and pass
+MINIO_ROOT_USER: farbod
+MINIO_ROOT_PASSWORD: 1234fgnh

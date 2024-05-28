@@ -1,5 +1,5 @@
 ---
-- hosts: repo-servers
+- hosts: all
   become: true
   gather_facts: yes
   name: install and configure repo server

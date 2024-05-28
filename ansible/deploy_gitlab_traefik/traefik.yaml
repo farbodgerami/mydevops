@@ -1,5 +1,6 @@
 ---
-- hosts: traefik
+- hosts: gitlab
+
   become: true
   gather_facts: yes
   name: install and configure traefik reverse proxy

@@ -1,9 +1,0 @@
-redis_IMAGE: redis
-redis_IMAGE_TAG: 7.2.3
-REDIS_DIRE_NAME: /var/services/redis
-
-HA_PROXY_IMAGE: haproxytech/haproxy-alpine
-HA_PROXY_IMAGE_TAG: 2.4
-
-REDIS_INSIGHT: redislabs/redisinsight
-REDIS_INSIGHT_TAG: 1.14.0
